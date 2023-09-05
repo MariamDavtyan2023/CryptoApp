@@ -1,5 +1,6 @@
 package com.demo.cryptoapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -20,7 +21,8 @@ class CoinPriceListActivity : AppCompatActivity() {
         val adapter = CoinInfoAdapter(this)
         adapter.onCoinClickListener = object : CoinInfoAdapter.OnCoinClickListener{
             override fun onCoinClick(coinPriceInfo: CoinPriceInfo) {
-                Log.d("ON_COIN_CLICK", coinPriceInfo.fromSymbol)
+                val intent = CoinDetailActivity.newIntent(this@CoinPriceListActivity, coinPriceInfo.fromSymbol)
+                startActivity(intent)
             }
         }
         rvCoinPriceList.adapter = adapter
